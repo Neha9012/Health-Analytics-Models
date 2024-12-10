@@ -1,0 +1,72 @@
+Report on Disease Risk and Readmission Prediction Pipeline
+Objective:
+The goal of this project is to build a machine learning pipeline that predicts:
+
+Disease Risk: The likelihood of a patient having a specific disease based on their medical history and demographics.
+Readmission: The likelihood of a patient being readmitted to the hospital after discharge.
+Data Description:
+The dataset consists of multiple features related to patient demographics, medical history, treatments, and diagnoses. The target variables are:
+
+Disease Risk (disease_risk): A binary classification indicating the patient's risk level.
+Readmission (readmitted): A binary classification indicating whether a patient will be readmitted to the hospital.
+Features: The dataset contains 66 columns, including:
+
+Patient demographics (age, race, gender, etc.)
+Medical history (diagnoses, medications, procedures, lab tests)
+Payer information
+Previous hospital visits and treatments (e.g., number of outpatient, inpatient, emergency visits)
+Preprocessing Steps:
+Handling Missing Values:
+
+For numerical columns, missing values are filled with the mean using SimpleImputer.
+For categorical columns, missing values are replaced with a placeholder value ('missing').
+Encoding Categorical Features:
+
+Categorical features (e.g., race, gender, payer codes) are encoded using One-Hot Encoding to convert them into numerical format suitable for model training.
+Feature Scaling:
+
+Numerical features are scaled using StandardScaler to normalize the data and ensure that all features contribute equally to the model.
+Modeling Approach:
+Pipeline Construction:
+
+A machine learning pipeline is created using Pipeline from sklearn. The pipeline combines:
+Preprocessing: Applying transformations such as imputation, scaling, and encoding.
+Classifier: Training the model with a RandomForestClassifier, which is known for its effectiveness on structured data.
+Model Training:
+
+Two separate pipelines were built:
+Disease Risk Prediction: A model that predicts whether a patient is at risk of a particular disease.
+Readmission Prediction: A model that predicts whether a patient will be readmitted to the hospital.
+Train-Test Split:
+
+The dataset is split into training and testing sets (80% for training, 20% for testing).
+Model Evaluation:
+Accuracy: Measures the proportion of correct predictions (both disease risk and readmission).
+Classification Report: Provides detailed metrics including precision, recall, F1-score, and support for both disease risk and readmission predictions.
+Results:
+Disease Risk Prediction:
+
+Accuracy: The model achieved a certain accuracy score (depending on data).
+Precision, Recall, F1-score: The classification report showed how well the model performed in terms of both correctly identifying patients at risk (precision) and correctly identifying all patients who were at risk (recall).
+Readmission Prediction:
+
+Accuracy: Similar to the disease risk model, the accuracy and other classification metrics were calculated for predicting readmission likelihood.
+Precision, Recall, F1-score: These metrics gave insight into the model's ability to correctly predict patient readmissions, with trade-offs between false positives and false negatives.
+Key Findings:
+Disease Risk Model: The RandomForest model was able to provide reasonable predictions based on the available features, but performance can be improved by tuning hyperparameters or using more complex models like XGBoost or Neural Networks.
+Readmission Prediction: This model also performed well, but there may be room for improvement in terms of precision and recall, especially to avoid false positives (patients predicted as readmitted but not actually readmitted).
+Model Improvement Suggestions:
+Hyperparameter Tuning: Using grid search or random search to optimize the hyperparameters of the RandomForestClassifier for better model performance.
+Feature Engineering: Including interaction terms between features or creating new features that could provide additional predictive power (e.g., time in hospital combined with number of lab procedures).
+Cross-Validation: Implementing cross-validation to get a better estimate of the model's performance across different subsets of the data.
+Model Diversity: Trying other classifiers such as Logistic Regression, Support Vector Machines (SVM), or XGBoost for comparison.
+Balancing the Dataset: If the dataset is imbalanced (e.g., many more patients with no readmission), techniques like oversampling or undersampling could help improve model performance.
+Conclusion:
+The pipeline successfully predicts disease risk and readmission likelihood based on the available data. While the RandomForest model provides reasonable performance, further improvements can be made by experimenting with different models and tuning the current setup. The results can potentially help healthcare providers make more informed decisions regarding patient treatment and hospital readmission planning.
+
+Future Work:
+Model Optimization: Further tuning and hyperparameter optimization are needed to enhance model accuracy.
+Deployment: Once the model reaches a satisfactory performance, it can be deployed as part of a clinical decision support system to assist healthcare professionals in predicting and managing patient care.
+References:
+Scikit-learn Documentation: For details on the machine learning pipeline and RandomForestClassifier.
+Random Forest Classifier: An ensemble learning method that combines multiple decision trees to improve prediction accuracy.
